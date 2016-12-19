@@ -34,3 +34,4 @@ C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Data\bin\Microsoft.A
 C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Data\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Data\obj\Debug\Data.dll
 C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Data\obj\Debug\Data.pdb
+C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
