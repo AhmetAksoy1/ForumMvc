@@ -47,3 +47,6 @@ C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\bin\System.Web.H
 C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\bin\System.Web.Mvc.xml
 C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\obj\Debug\Web.dll
 C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\obj\Debug\Web.pdb
+C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\bin\Data.dll
+C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\bin\Data.pdb
+C:\Users\Ahmet\Documents\Visual Studio 2015\Projects\Forum0\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Data;
 using Admin.Helpers;
+using System.Drawing.Imaging;
 
 namespace Admin.Controllers
 {
