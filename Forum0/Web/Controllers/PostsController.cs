@@ -13,7 +13,7 @@ namespace Web.Controllers
 {
     public class PostsController : BaseController
     {
-        public ActionResult Index(int id = 0, int start = 0, int pageSize = 25, string query = "")
+        public ActionResult Index(int id = 0, int start = 0, int pageSize = 10, string query = "")
         {
             var posts = db.PostSet.AsQueryable();
 
@@ -42,14 +42,47 @@ namespace Web.Controllers
             return View(post);
         }
 
-        public ActionResult Avatar(int id)
+        [HttpPost]
+        public ActionResult Comment(int post_id, String comment_text)
         {
-            byte[] file = db.UserSet.Find(id).Avatar;
-            if (file == null)
+            var user = (User)Session["user"];
+
+            if (user == null)
             {
-                return Content("Resim bulunamadı");
+                TempData["comment_error"] = "Giriş yapmadan yorum yapamasınız !";
+                return Redirect(Request.UrlReferrer.ToString());
             }
-            return File(file, ImageHelper.GetContentType(file).ToString());
+
+            if (comment_text == "" || post_id < 1)
+            {
+                TempData["comment_error"] = "Formdaki eksikleri doldurunuz !";
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
+            var comment = new Comment();
+            comment.Date = DateTime.Now;
+            comment.PostId = post_id;
+            comment.Text = comment_text;
+            comment.UserId = user.Id;
+            comment.Verified = false;
+
+            db.CommentSet.Add(comment);
+            db.SaveChanges();
+
+            TempData["comment_success"] = "Yorumunuz onay sonrasında yayına alınacaktır, teşekkürler !";
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpPost]
+        public ActionResult CommentAjax(int post_id, String comment_text)
+        {
+            Comment(post_id, comment_text);
+
+            if (TempData["comment_error"] != null)
+            {
+                return Content(TempData["comment_error"].ToString());
+            }
+            return Content(TempData["comment_success"].ToString());
         }
     }
 }
