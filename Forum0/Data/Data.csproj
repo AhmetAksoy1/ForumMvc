@@ -116,6 +116,8 @@
     <Content Include="db.edmx.diagram">
       <DependentUpon>db.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\aadmin - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\aadmin - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

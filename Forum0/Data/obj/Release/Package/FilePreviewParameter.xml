@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="aadmin" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Ahmet\\Documents\\Visual\ Studio\ 2015\\Projects\\Forum0\\Data\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Ahmet\\Documents\\Visual\ Studio\ 2015\\Projects\\Forum0\\Data\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="dbContainer-Web.config Connection String" description="" value="metadata=res://*/db.csdl|res://*/db.ssdl|res://*/db.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:aaksoy.database.windows.net,1433;Initial Catalog=db;Persist Security Info=False;User ID=aaksoy;Password=034861Ts;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Ahmet\\Documents\\Visual\ Studio\ 2015\\Projects\\Forum0\\Data\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbContainer']/@connectionString" />
+  </parameter>
+</parameters>

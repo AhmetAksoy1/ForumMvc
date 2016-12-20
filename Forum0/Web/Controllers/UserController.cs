@@ -11,7 +11,16 @@ namespace Web.Controllers
 {
     public class UserController : BaseController
     {
-            [HttpPost]
+        public ActionResult LoginForm(UserViewModel user)
+        {
+            if (Session["user"] == null)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Posts");
+        }
+
+        [HttpPost]
             public ActionResult Login(UserViewModel user)
             {
                 if (ModelState.IsValid)

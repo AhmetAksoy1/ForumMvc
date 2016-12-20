@@ -84,5 +84,11 @@ namespace Web.Controllers
             }
             return Content(TempData["comment_success"].ToString());
         }
+
+        public ActionResult Json(int id)
+        {
+            var list = db.PostSet.Where(q => q.CategoryId == id).Select(x => new { x.Id, x.Title });
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

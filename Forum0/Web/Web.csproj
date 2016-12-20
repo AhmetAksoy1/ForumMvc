@@ -132,6 +132,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\aweb - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\aweb - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -148,14 +150,17 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\MemberAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\MailViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +183,10 @@
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Shared\Profile.cshtml" />
     <Content Include="Views\Shared\Sidebar.cshtml" />
+    <Content Include="Views\Contact\Fail.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\Success.cshtml" />
+    <Content Include="Views\User\LoginForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -188,10 +197,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\Home\" />
-    <Folder Include="Views\UserViewModel\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

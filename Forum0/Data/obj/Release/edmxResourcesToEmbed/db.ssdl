@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dbStoreContainer">
+    <EntitySet Name="UserSet" EntityType="db.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTypeSet" EntityType="db.Store.UserTypeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PostSet" EntityType="db.Store.PostSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategorySet" EntityType="db.Store.CategorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CommentSet" EntityType="db.Store.CommentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogSet" EntityType="db.Store.LogSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserPost" Association="db.Store.UserPost">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Post" EntitySet="PostSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserLog" Association="db.Store.UserLog">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Log" EntitySet="LogSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserUserType" Association="db.Store.UserUserType">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="UserType" EntitySet="UserTypeSet" />
+    </AssociationSet>
+    <AssociationSet Name="PostComment" Association="db.Store.PostComment">
+      <End Role="Post" EntitySet="PostSet" />
+      <End Role="Comment" EntitySet="CommentSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserComment" Association="db.Store.UserComment">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Comment" EntitySet="CommentSet" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryPost" Association="db.Store.CategoryPost">
+      <End Role="Category" EntitySet="CategorySet" />
+      <End Role="Post" EntitySet="PostSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Avatar" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategorySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Slug" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Verified" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Detail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="UserPost">
+    <End Role="User" Type="db.Store.UserSet" Multiplicity="1" />
+    <End Role="Post" Type="db.Store.PostSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserLog">
+    <End Role="User" Type="db.Store.UserSet" Multiplicity="1" />
+    <End Role="Log" Type="db.Store.LogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserUserType">
+    <End Role="User" Type="db.Store.UserSet" Multiplicity="*" />
+    <End Role="UserType" Type="db.Store.UserTypeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PostComment">
+    <End Role="Post" Type="db.Store.PostSet" Multiplicity="1" />
+    <End Role="Comment" Type="db.Store.CommentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserComment">
+    <End Role="User" Type="db.Store.UserSet" Multiplicity="1" />
+    <End Role="Comment" Type="db.Store.CommentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryPost">
+    <End Role="Category" Type="db.Store.CategorySet" Multiplicity="1" />
+    <End Role="Post" Type="db.Store.PostSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
